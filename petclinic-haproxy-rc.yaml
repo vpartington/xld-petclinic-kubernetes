@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: petclinic-haproxy
+  labels:
+    app: petclinic
+    tier: haproxy
+    thing: petclinic-haproxy-rc-metadata
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: petclinic
+        tier: haproxy
+        thing: haproxy-rc-replica
+    spec:
+      containers:
+      - name: petclinic-haproxy
+        image: eeacms/haproxy:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: BACKENDS
+          value: 10.0.0.114:8080
+        ports:
+        - containerPort: 80
+        - containerPort: 1936

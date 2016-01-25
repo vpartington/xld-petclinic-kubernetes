@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-haproxy
+  labels:
+    app: petclinic
+    tier: haproxy
+    thing: petlinic-haproxy-svc-metadata
+spec:
+  ports:
+  - name: web
+    port: 80
+  - name: admin
+    port: 1936
+  selector:
+    app: petclinic
+    tier: haproxy

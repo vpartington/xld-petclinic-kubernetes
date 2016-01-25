@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic-backend
+  labels:
+    app: petclinic
+    tier: backend
+    thing: petclinic-backend-svc-metadata
+spec:
+  ports:
+  - port: 8282
+  selector:
+    app: petclinic
+    tier: backend
